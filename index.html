@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGear - SoundWave Pro X Headphones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        :root {
+            --primary-color: #3b82f6;
+            --text-color: #1f2937;
+            --background-color: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .product {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .product {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--white);
+            color: var(--text-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .product-image:hover .quick-view {
+            opacity: 1;
+        }
+
+        .product-details h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 1rem 0;
+        }
+
+        .description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--text-color);
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .features {
+            margin-top: 2rem;
+        }
+
+        .features h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .features ul {
+            list-style-position: inside;
+            color: #4b5563;
+        }
+
+        .features li {
+            margin-bottom: 0.5rem;
+        }
+
+        .color-options {
+            margin: 1.5rem 0;
+        }
+
+        .color-options h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .colors {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .color {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            cursor: pointer;
+        }
+
+        .color.black {
+            background-color: #000;
+        }
+
+        .color.white {
+            background-color: #fff;
+        }
+
+        .color.blue {
+            background-color: #3b82f6;
+        }
+
+        .similar-products {
+            margin-top: 4rem;
+        }
+
+        .similar-products h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card-details {
+            padding: 1rem;
+        }
+
+        .product-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card-price {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .add-to-cart {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="brand">TechGear</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="product">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" alt="SoundWave Pro X Headphones">
+                <button class="quick-view">Quick View</button>
+            </div>
+            <div class="product-details">
+                <h1>SoundWave Pro X Headphones</h1>
+                <div class="rating">
+                    <div class="stars">★★★★☆</div>
+                    <span>4.8 (120 reviews)</span>
+                </div>
+                <div class="price">$299.99</div>
+                <p class="description">
+                    Experience crystal-clear audio with the SoundWave Pro X. These over-ear headphones feature active noise cancellation, 
+                    Bluetooth 5.0 connectivity, and up to 30 hours of battery life. Perfect for music enthusiasts and professionals alike.
+                </p>
+                <div class="color-options">
+                    <h2>Select Color</h2>
+                    <div class="colors">
+                        <div class="color black"></div>
+                        <div class="color white"></div>
+                        <div class="color blue"></div>
+                    </div>
+                </div>
+                <div class="features">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>Active Noise Cancellation</li>
+                        <li>30-hour battery life</li>
+                        <li>Bluetooth 5.0</li>
+                        <li>Comfortable over-ear design</li>
+                        <li>Built-in microphone for calls</li>
+                    </ul>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-secondary">Add to Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="similar-products">
+            <h2>Similar Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3BlYWtlcnxlbnwwfHwwfHx8MA%3D%3D" alt="BassBoost Mini Speaker">
+                        <button class="add-to-cart">+</button>
+                    </div>
+                    <div class="product-card-details">
+                        <h3 class="product-card-title">BassBoost Mini Speaker</h3>
+                        <p class="product-card-price">$79.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNtYXJ0d2F0Y2h8ZW58MHx8MHx8fDA%3D" alt="TechPro Smartwatch">
+                        <button class="add-to-cart">+</button>
+                    </div>
+                    <div class="product-card-details">
+                        <h3 class="product-card-title">TechPro Smartwatch</h3>
+                        <p class="product-card-price">$199.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZWFyYnVkc3xlbnwwfHwwfHx8MA%3D%3D" alt="UltraSound Earbuds">
+                        <button class="add-to-cart">+</button>
+                    </div>
+                    <div class="product-card-details">
+                        <h3 class="product-card-title">UltraSound Earbuds</h3>
+                        <p class="product-card-price">$129.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvcnRhYmxlJTIwYmF0dGVyeXxlbnwwfHwwfHx8MA%3D%3D" alt="PowerCharge Portable Battery">
+                        <button class="add-to-cart">+</button>
+                    </div>
+                    <div class="product-card-details">
+                        <h3 class="product-card-title">PowerCharge Portable Battery</h3>
+                        <p class="product-card-price">$49.99</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
